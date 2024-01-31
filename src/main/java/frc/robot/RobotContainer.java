@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.generated.TunerConstants;
+import frc.robot.Constants;
+import frc.robot.subsystems.CommandSwerveDrivetrain;
 
 public class RobotContainer {
   final double MaxSpeed = 6; // 6 meters per second desired top speed
@@ -23,7 +24,7 @@ public class RobotContainer {
   /* Setting up bindings for necessary control of the swerve drive platform */
   CommandPS4Controller joystick = new CommandPS4Controller(0);
   //CommandXboxController joystick = new CommandXboxController(0); // My joystick
-  CommandSwerveDrivetrain drivetrain = TunerConstants.DriveTrain; // My drivetrain
+  CommandSwerveDrivetrain drivetrain = Constants.Swerve.TunerConstants.DriveTrain; // My drivetrain
   SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric().withIsOpenLoop(true); // I want field-centric
                                                                                             // driving in open loop
   SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
