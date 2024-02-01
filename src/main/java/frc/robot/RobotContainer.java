@@ -15,7 +15,9 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants;
+import frc.robot.commands.SpinIntakeCommand;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
+import frc.robot.subsystems.IntakeShooterSubsystem;
 
 public class RobotContainer {
   final double MaxSpeed = 6; // 6 meters per second desired top speed
@@ -31,6 +33,8 @@ public class RobotContainer {
   SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
   Telemetry logger = new Telemetry(MaxSpeed);
 
+  private final IntakeShooterSubsystem intakeShooter = new IntakeShooterSubsystem();
+
   private void configureBindings() {
     drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
         drivetrain.applyRequest(() -> drive.withVelocityX(-joystick.getLeftY() * MaxSpeed) // Drive forward with
@@ -45,6 +49,8 @@ public class RobotContainer {
 
     // reset the field-centric heading on left bumper press
     joystick.L1().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
+    //bind intake spinup to the R1 trigger
+    joystick.R1().onTrue(new SpinIntakeCommand(intakeShooter));
 
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));

@@ -130,4 +130,12 @@ public class Constants {
         public static final CANDeviceID motorID = new CANDeviceID(0);
         public static final MechanismRatio motorRatio = new MechanismRatio(0, 0, 0);
     }
+    public static final class Intake { 
+        public static final CANDeviceID motorID = new CANDeviceID(9);
+        public static final MechanismRatio motorRatio = new MechanismRatio(0,0, 0);
+    }
+    public static final class Shooter { 
+        public static final CANDeviceID motorID = new CANDeviceID(10);
+        public static final MechanismRatio motorRatio = new MechanismRatio(0,0, 0);
+    }
 }
