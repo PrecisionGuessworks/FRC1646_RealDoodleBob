@@ -24,8 +24,8 @@ public class RobotContainer {
   final double MaxAngularRate = Math.PI; // Half a rotation per second max angular velocity
 
   /* Setting up bindings for necessary control of the swerve drive platform */
-  CommandPS4Controller joystick = new CommandPS4Controller(0);
-  //CommandXboxController joystick = new CommandXboxController(0); // My joystick
+  //CommandPS4Controller joystick = new CommandPS4Controller(0);
+  CommandXboxController joystick = new CommandXboxController(0); // My joystick
   CommandSwerveDrivetrain drivetrain = Constants.Swerve.TunerConstants.DriveTrain; // My drivetrain
   SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric().withIsOpenLoop(true); // I want field-centric
                                                                                             // driving in open loop
@@ -43,14 +43,14 @@ public class RobotContainer {
             .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
         ));
 
-    joystick.triangle().whileTrue(drivetrain.applyRequest(() -> brake));
-    joystick.cross().whileTrue(drivetrain
+    joystick.y().whileTrue(drivetrain.applyRequest(() -> brake));
+    joystick.a().whileTrue(drivetrain
         .applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
 
     // reset the field-centric heading on left bumper press
-    joystick.L1().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
+    joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
     //bind intake spinup to the R1 trigger
-    joystick.R1().onTrue(new SpinIntakeCommand(intakeShooter));
+    joystick.rightBumper().onTrue(new SpinIntakeCommand(intakeShooter));
 
     if (Utils.isSimulation()) {
       drivetrain.seedFieldRelative(new Pose2d(new Translation2d(), Rotation2d.fromDegrees(90)));
