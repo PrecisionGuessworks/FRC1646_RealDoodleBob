@@ -6,7 +6,6 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants.SwerveModuleSteerFeedbackType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstantsFactory;
 
-
 import edu.wpi.first.math.util.Units;
 import frc.robot.motorcontrol.MechanismRatio;
 import frc.robot.motorcontrol.devices.CANDeviceID;
@@ -51,7 +50,6 @@ public class Constants {
     private static final String kCANbusName = "";
     private static final int kPigeonId = 13;
 
-
     // These are only used for simulation
     private static final double kSteerInertia = 0.00001;
     private static final double kDriveInertia = 0.001;
@@ -73,7 +71,6 @@ public class Constants {
             .withFeedbackSource(SwerveModuleSteerFeedbackType.FusedCANcoder)
             .withCouplingGearRatio(kCoupleRatio)
             .withSteerMotorInverted(kSteerMotorReversed);
-
 
     // Front Left
     private static final int kFrontLeftDriveMotorId = 7;
@@ -111,7 +108,6 @@ public class Constants {
     private static final double kBackRightXPosInches = -10;
     private static final double kBackRightYPosInches = -10;
 
-
     private static final SwerveModuleConstants FrontLeft = ConstantCreator.createModuleConstants(
             kFrontLeftSteerMotorId, kFrontLeftDriveMotorId, kFrontLeftEncoderId, kFrontLeftEncoderOffset, Units.inchesToMeters(kFrontLeftXPosInches), Units.inchesToMeters(kFrontLeftYPosInches), kInvertLeftSide);
     private static final SwerveModuleConstants FrontRight = ConstantCreator.createModuleConstants(
@@ -130,4 +126,22 @@ public class Constants {
         public static final CANDeviceID motorID = new CANDeviceID(0);
         public static final MechanismRatio motorRatio = new MechanismRatio(0, 0, 0);
     }
+
+    public static final class Intake {
+        public static final class Roller {
+                public static final CANDeviceID rollerMotorID = new CANDeviceID(1, kCanivoreName);
+                public static final MechanismRatio rollerMotorRatio = new MechanismRatio(0,0,0);
+                public static final boolean rollerMotorInverted = false;
+
+                public static final double rollerIntakePower = 0.50;
+                public static final double rollerSlowPower = 0.25;
+
+                public static final double rollerStallSpeed = Math.PI * (1.0 / 8.0);
+                public static final double rollerStallTime = 0.1;
+
+        }
+        
+    }
 }
+
+
