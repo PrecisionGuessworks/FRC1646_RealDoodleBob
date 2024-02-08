@@ -22,11 +22,13 @@ public class IntakePiece extends Command{
 
   @Override
   public void execute() {
+    m_intakeSubsystem.startRollerSpin();
     // Called every time Command is scheduled
   }
 
   @Override
   public void end(boolean interrupted) {
+    m_intakeSubsystem.stopRoller();
     //Called when command ends or is interrupted
   }
 
