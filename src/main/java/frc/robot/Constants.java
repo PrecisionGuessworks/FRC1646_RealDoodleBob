@@ -47,7 +47,7 @@ public class Constants {
     private static final boolean kInvertLeftSide = false;
     private static final boolean kInvertRightSide = true;
 
-    private static final String kCANbusName = "";
+    private static final String kCANbusName = kCanivoreName;
     private static final int kPigeonId = 13;
 
     // These are only used for simulation
@@ -129,7 +129,7 @@ public class Constants {
 
     public static final class Intake {
         public static final class Roller {
-                public static final CANDeviceID rollerMotorID = new CANDeviceID(1, kCanivoreName);
+                public static final CANDeviceID rollerMotorID = new CANDeviceID(21, kCanivoreName);
                 public static final MechanismRatio rollerMotorRatio = new MechanismRatio(0,0,0);
                 public static final boolean rollerMotorInverted = false;
 
